@@ -33,7 +33,19 @@ class ProductDetail extends Component {
     this.view.description.innerText = description;
     this.view.price.innerText = formatPrice(salePriceU);
     this.view.btnBuy.onclick = this._addToCart.bind(this);
-    this.view.btnFav.onclick = this._addToFav.bind(this);
+
+    let isInFav = favService.isInFav(this.product);
+    const onFavBtnClick = () => {
+      if (isInFav) {
+        this._removeFromFav.apply(this);
+        isInFav = false;
+      } else {
+        this._addToFav.apply(this);
+        isInFav = true;
+      }
+    };
+
+    this.view.btnFav.onclick = onFavBtnClick;
 
     const isInCart = await cartService.isInCart(this.product);
 
@@ -67,11 +79,12 @@ class ProductDetail extends Component {
   private _addToFav() {
     if (!this.product) return;
     favService.addProduct(this.product);
-    this._setInFav();
   }
 
-  private _setInFav() {
-    this.view.btnFav.disabled = true;
+  private _removeFromFav() {
+    if (!this.product) return;
+    favService.removeProduct(this.product);
+    this.view.btnFav.disabled = false;
   }
 }
 
