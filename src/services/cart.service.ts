@@ -1,4 +1,5 @@
 import localforage from 'localforage';
+import sendEvent from '../utils/sendEvent';
 import { ProductData } from 'types';
 
 const DB = '__wb-cart';
@@ -10,6 +11,7 @@ class CartService {
 
   async addProduct(product: ProductData) {
     const products = await this.get();
+    sendEvent('addToCard', product);
     await this.set([...products, product]);
   }
 
