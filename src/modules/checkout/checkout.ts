@@ -33,7 +33,8 @@ class Checkout extends Component {
     await cartService.clear();
     const totalPrice = this.products.reduce((acc, product) => (acc += product.salePriceU), 0);
     const productIds = this.products.map((product) => product.id);
-    sendEvent('purchase', { totalPrice, productIds });
+    const orderId = Math.trunc(Math.random() * 1000000000);
+    sendEvent('purchase', { totalPrice, productIds, orderId });
     fetch('/api/makeOrder', {
       method: 'POST',
       body: JSON.stringify(this.products)
