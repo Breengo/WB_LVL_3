@@ -1,0 +1,39 @@
+.advice {
+  &__input {
+    width: 840px;
+    height: 40px;
+    border-radius: 15px;
+    border: 3px solid #cb11ab;
+    font-size: 25px;
+    padding: 0 10px;
+    outline: none;
+  }
+
+  &__text {
+    font-size: 22px;
+    line-height: 24px;
+    font-weight: 500;
+  }
+  &__module {
+    margin-top: 5px;
+    padding: 10px;
+  }
+  &__item {
+    background-color: #f6f6fa;
+    border-radius: 8px;
+    padding: 2px;
+    span {
+      color: transparent;
+      background-color: #f6f6fa;
+      background-image: linear-gradient(90deg, #da15b8, #8d06cc);
+      background-size: 100%;
+      background-repeat: repeat;
+      background-clip: content-box;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -moz-background-clip: text;
+      -moz-text-fill-color: transparent;
+      cursor: pointer;
+    }
+  }
+}
